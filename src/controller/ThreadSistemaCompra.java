@@ -39,26 +39,26 @@ public class ThreadSistemaCompra extends Thread{
 			return false;
 		}
 		else{
-		return true;
+			return true;
 		}
 	}
 
 	private boolean processoCompra() {
 		int tempo = (int)(Math.random() * 2001) + 1000;
-		try {
-			sleep(tempo);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			try {
+				sleep(tempo);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		if(tempo > 2500){
 			System.out.println("final de tempo de sessão");
 			return false;
 		}
 		else{
-		return true;
+			return true;
 		}
 	}
-		
+	
 	private void validacaoCompra() {
 		int ingressos = (int)(Math.random() * 3.1) + 1; 
 		if(capacidade >= ingressos){
