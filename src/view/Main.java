@@ -10,7 +10,7 @@ public class Main {
 		
 		Semaphore semaforo = new Semaphore(1);
 		
-		for(int pessoa = 1; pessoa<=300; pessoa++){
+		for(int pessoa = 1; pessoa<=1; pessoa++){
 			ThreadSistemaCompra t = new ThreadSistemaCompra(semaforo);
 			t.start();
 		}

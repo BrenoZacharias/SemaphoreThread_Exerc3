@@ -13,19 +13,21 @@ public class ThreadSistemaCompra extends Thread{
 
 	@Override
 	public void run() {
-		login();
-		processoCompra();
-		try {
-			semaforo.acquire();
-			validacaoCompra();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} finally{
-			semaforo.release();
+		if(login()==true){
+			if(processoCompra()==true){
+				try {
+					semaforo.acquire();
+					validacaoCompra();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} finally{
+					semaforo.release();
+				}
+			}
 		}
 	}
 
-	private void login() {
+	private boolean login() {
 		int tempo = (int)(Math.random() * 1951) + 50;
 		try {
 			sleep(tempo);
@@ -34,11 +36,14 @@ public class ThreadSistemaCompra extends Thread{
 		}
 		if(tempo > 1000){
 			System.out.println("timeout");
-			ThreadSistemaCompra.interrupted();
+			return false;
+		}
+		else{
+		return true;
 		}
 	}
 
-	private void processoCompra() {
+	private boolean processoCompra() {
 		int tempo = (int)(Math.random() * 2001) + 1000;
 		try {
 			sleep(tempo);
@@ -47,7 +52,10 @@ public class ThreadSistemaCompra extends Thread{
 		}
 		if(tempo > 2500){
 			System.out.println("final de tempo de sessão");
-			ThreadSistemaCompra.interrupted();
+			return false;
+		}
+		else{
+		return true;
 		}
 	}
 		
